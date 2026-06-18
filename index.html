@@ -3,644 +3,465 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lavandería Express Milagros · Miraflores, Lima</title>
-  <meta name="description" content="Tu ropa lista en 24 horas. Lavado al agua, lavado en seco, planchado y entrega a domicilio en Miraflores, Lima." />
+  <!-- ===================================================================
+       PLANTILLA PREMIUM MULTI-RUBRO · condor.ai
+       Sirve para cualquier negocio local (salón, taller, clínica, tienda,
+       estudio, gimnasio, etc.). Personaliza en 2 lugares:
+         1) El bloque CONFIG de <script> (WhatsApp, nombre).
+         2) Las variables CSS de color (:root --acento) y los textos.
+       =================================================================== -->
+  <title>Tu Negocio · Sitio web profesional</title>
+  <meta name="description" content="Página web profesional para tu negocio: atrae más clientes, recibe pedidos y reservas por WhatsApp, y destaca de tu competencia." />
+  <meta name="theme-color" content="#0e0c16" />
 
-  <!-- ===== Fuente Inter desde Google Fonts ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Tipografías distintivas: Sora (display) + Plus Jakarta Sans (cuerpo) -->
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* =========================================================
-       VARIABLES DE DISEÑO
-       Paleta: azul oscuro #1a237e + blanco + celeste #42a5f5
+       VARIABLES — cambia --acento para re-temar a cada cliente
        ========================================================= */
-    :root {
-      --azul: #1a237e;          /* azul oscuro principal */
-      --azul-900: #0f1551;      /* azul aún más profundo para gradientes */
-      --celeste: #42a5f5;       /* acento celeste */
-      --celeste-claro: #7ec5ff; /* celeste luminoso para detalles */
-      --blanco: #ffffff;
-      --gris-fondo: #f4f7fc;    /* fondo suave azulado */
-      --gris-texto: #5b6478;    /* texto secundario */
-      --tinta: #141a33;         /* texto fuerte */
-      --wsp: #25d366;           /* verde WhatsApp */
-      --wsp-oscuro: #1ebe57;
-      --sombra-suave: 0 10px 30px -12px rgba(26, 35, 126, .18);
-      --sombra-card: 0 18px 40px -20px rgba(26, 35, 126, .28);
-      --radio: 18px;
-      --max: 1180px;
+    :root{
+      --bg:#f6f4ef; --bg-2:#efece4; --ink:#14121c; --ink-soft:#5a5768;
+      --linea:rgba(20,18,28,.10); --blanco:#ffffff;
+      --acento:#6c4cff; --acento-2:#a78bfa; --acento-ink:#ffffff;
+      --oscuro:#0e0c16; --crema:#f3f0ff;
+      --wsp:#25d366; --wsp-2:#1ebe57;
+      --r:18px; --sombra:0 26px 60px -28px rgba(20,18,28,.35);
+      --max:1180px;
     }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);
+      line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    h1,h2,h3,h4{font-family:'Sora',sans-serif;line-height:1.08;letter-spacing:-.02em;font-weight:800}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 22px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.74rem;letter-spacing:2px;
+      text-transform:uppercase;color:var(--acento);background:var(--crema);padding:7px 14px;border-radius:999px}
 
-    /* ===== Reset básico ===== */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      color: var(--tinta);
-      background: var(--blanco);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-
-    .contenedor { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 22px; }
+    /* Botones */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Plus Jakarta Sans',sans-serif;
+      font-weight:700;font-size:1rem;min-height:54px;padding:0 26px;border-radius:999px;border:none;cursor:pointer;
+      transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}
+    .btn-wsp{background:var(--wsp);color:#fff;box-shadow:0 14px 30px -12px rgba(37,211,102,.7)}
+    .btn-wsp:hover{background:var(--wsp-2);transform:translateY(-3px)}
+    .btn-dark{background:var(--ink);color:#fff}
+    .btn-dark:hover{transform:translateY(-3px);box-shadow:var(--sombra)}
+    .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--linea)}
+    .btn-ghost:hover{border-color:var(--ink);transform:translateY(-3px)}
+    .btn svg{width:20px;height:20px;fill:currentColor}
 
     /* =========================================================
-       BOTONES
+       NAV
        ========================================================= */
-    .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-weight: 700; font-size: 1rem;
-      padding: 15px 28px; border-radius: 999px;
-      border: none; cursor: pointer;
-      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
-      will-change: transform;
-    }
-    .btn-wsp {
-      background: var(--wsp); color: #fff;
-      box-shadow: 0 12px 26px -8px rgba(37, 211, 102, .6);
-    }
-    .btn-wsp:hover { background: var(--wsp-oscuro); transform: translateY(-3px); box-shadow: 0 18px 34px -8px rgba(37, 211, 102, .7); }
-    .btn-fantasma {
-      background: rgba(255,255,255,.1); color: #fff;
-      border: 1.5px solid rgba(255,255,255,.35);
-      backdrop-filter: blur(6px);
-    }
-    .btn-fantasma:hover { background: rgba(255,255,255,.2); transform: translateY(-3px); }
+    nav{position:fixed;top:0;left:0;right:0;z-index:70;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+    .nav-in{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 22px;transition:padding .3s}
+    nav.solid{background:rgba(246,244,239,.85);backdrop-filter:blur(12px);box-shadow:0 4px 24px -12px rgba(20,18,28,.2)}
+    nav.solid .nav-in{padding:12px 22px}
+    .brand{display:flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-.03em}
+    .brand .mk{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--acento),var(--acento-2));display:grid;place-items:center;color:#fff;font-weight:800}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a.lk{font-weight:600;font-size:.92rem;color:var(--ink-soft);transition:color .2s}
+    .nav-links a.lk:hover{color:var(--ink)}
+    .hamb{display:none;width:46px;height:46px;border:1px solid var(--linea);border-radius:12px;background:transparent;cursor:pointer;position:relative}
+    .hamb span{position:absolute;left:12px;right:12px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
+    .hamb span:nth-child(1){top:16px}.hamb span:nth-child(2){top:22px}.hamb span:nth-child(3){top:28px}
+    .hamb.x span:nth-child(1){transform:translateY(6px) rotate(45deg)}.hamb.x span:nth-child(2){opacity:0}.hamb.x span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+    .drawer{position:fixed;inset:0 0 0 auto;width:min(80vw,320px);z-index:80;background:var(--blanco);box-shadow:-20px 0 60px rgba(0,0,0,.25);
+      transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;padding:80px 26px 26px;gap:6px}
+    .drawer.open{transform:none}
+    .drawer a{padding:14px 0;font-family:'Sora',sans-serif;font-weight:700;font-size:1.3rem;border-bottom:1px solid var(--linea)}
+    .overlay{position:fixed;inset:0;z-index:75;background:rgba(0,0,0,.4);opacity:0;visibility:hidden;transition:.35s}
+    .overlay.on{opacity:1;visibility:visible}
 
     /* =========================================================
        HERO
-       Gradiente de fondo + forma geométrica decorativa
        ========================================================= */
-    .hero {
-      position: relative;
-      background: radial-gradient(120% 120% at 80% -10%, var(--celeste) 0%, var(--azul) 45%, var(--azul-900) 100%);
-      color: #fff;
-      padding: 30px 0 110px;
-      overflow: hidden;
-    }
-    /* Burbujas/formas decorativas flotantes */
-    .hero::before, .hero::after {
-      content: ""; position: absolute; border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(126,197,255,.5), transparent 70%);
-      filter: blur(2px); pointer-events: none;
-    }
-    .hero::before { width: 420px; height: 420px; top: -120px; right: -100px; animation: flotar 9s ease-in-out infinite; }
-    .hero::after  { width: 280px; height: 280px; bottom: -120px; left: -80px; opacity: .6; animation: flotar 11s ease-in-out infinite reverse; }
+    .hero{position:relative;padding:140px 0 80px;overflow:hidden}
+    .hero::before{content:"";position:absolute;width:680px;height:680px;border-radius:50%;top:-280px;right:-160px;
+      background:radial-gradient(circle at 40% 40%,var(--acento-2),transparent 60%);opacity:.35;filter:blur(20px);pointer-events:none}
+    .hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center;position:relative;z-index:2}
+    .hero h1{font-size:clamp(2.6rem,7vw,4.5rem);font-weight:800;margin:22px 0 18px}
+    .hero h1 .hl{background:linear-gradient(120deg,var(--acento),var(--acento-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p.lead{font-size:clamp(1.05rem,2.2vw,1.25rem);color:var(--ink-soft);max-width:540px;margin-bottom:30px}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+    .hero-trust{display:flex;align-items:center;gap:18px;margin-top:30px;flex-wrap:wrap}
+    .estrellas{color:#f5a623;letter-spacing:2px}
+    .hero-trust small{color:var(--ink-soft)}
 
-    @keyframes flotar {
-      0%, 100% { transform: translateY(0) translateX(0); }
-      50% { transform: translateY(-26px) translateX(14px); }
-    }
-
-    /* Forma geométrica decorativa: ondas tipo "tela/agua" abajo del hero */
-    .hero-ola {
-      position: absolute; bottom: -2px; left: 0; width: 100%; line-height: 0;
-    }
-    .hero-ola svg { width: 100%; height: 90px; display: block; }
-
-    /* ===== Navbar dentro del hero ===== */
-    .nav {
-      position: relative; z-index: 5;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 22px 0;
-    }
-    .marca { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.15rem; letter-spacing: -.3px; }
-    .marca .logo-burbuja {
-      width: 42px; height: 42px; border-radius: 13px;
-      background: linear-gradient(140deg, var(--celeste-claro), #fff);
-      display: grid; place-items: center; color: var(--azul);
-      box-shadow: inset 0 0 0 2px rgba(255,255,255,.6);
-    }
-    .nav-tel { font-weight: 600; font-size: .95rem; opacity: .92; display: flex; align-items: center; gap: 8px; }
-
-    /* ===== Contenido principal del hero ===== */
-    .hero-grid {
-      position: relative; z-index: 4;
-      display: grid; grid-template-columns: 1fr; gap: 40px;
-      align-items: center; padding-top: 30px;
-    }
-    .hero-pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25);
-      padding: 8px 16px; border-radius: 999px; font-size: .82rem; font-weight: 600;
-      backdrop-filter: blur(6px); margin-bottom: 22px;
-    }
-    .hero-pill .punto { width: 8px; height: 8px; border-radius: 50%; background: var(--celeste-claro); box-shadow: 0 0 0 4px rgba(126,197,255,.3); }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 7vw, 4.2rem);
-      font-weight: 900; line-height: 1.05; letter-spacing: -1.5px;
-      margin-bottom: 18px;
-    }
-    .hero h1 .resalta {
-      background: linear-gradient(120deg, var(--celeste-claro), #fff);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .hero p.sub { font-size: clamp(1.02rem, 2.2vw, 1.22rem); opacity: .9; max-width: 540px; margin-bottom: 32px; }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; }
-
-    /* Tarjeta flotante de "prueba social" dentro del hero */
-    .hero-prueba {
-      margin-top: 38px; display: inline-flex; align-items: center; gap: 16px;
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22);
-      padding: 14px 20px; border-radius: 16px; backdrop-filter: blur(8px);
-    }
-    .hero-prueba .estrellas { color: #ffd54f; letter-spacing: 2px; font-size: 1rem; }
-    .hero-prueba small { display: block; opacity: .85; }
+    /* Visual del hero: tarjeta mockup flotante */
+    .mock{position:relative;perspective:1200px}
+    .mock-card{background:var(--blanco);border:1px solid var(--linea);border-radius:24px;padding:24px;box-shadow:var(--sombra);
+      transform:rotateY(-10deg) rotateX(4deg);transition:transform .4s ease;animation:flota 6s ease-in-out infinite}
+    @keyframes flota{0%,100%{transform:rotateY(-10deg) rotateX(4deg) translateY(0)}50%{transform:rotateY(-6deg) rotateX(2deg) translateY(-14px)}}
+    .mock-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .mock-badge{font-size:.72rem;font-weight:700;color:#fff;background:var(--wsp);padding:5px 12px;border-radius:999px}
+    .mock-row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--linea)}
+    .mock-row:last-child{border:none}
+    .mock-ic{width:40px;height:40px;border-radius:12px;background:var(--crema);display:grid;place-items:center;color:var(--acento);flex:0 0 auto}
+    .mock-row b{display:block;font-family:'Sora',sans-serif} .mock-row small{color:var(--ink-soft)}
 
     /* =========================================================
-       SECCIONES GENERALES
+       SECCIONES
        ========================================================= */
-    section { padding: 90px 0; }
-    .eyebrow {
-      display: inline-block; color: var(--celeste); font-weight: 700;
-      font-size: .82rem; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 12px;
-    }
-    .titulo-seccion {
-      font-size: clamp(1.9rem, 4.5vw, 2.8rem); font-weight: 900;
-      letter-spacing: -1px; line-height: 1.1; color: var(--azul); margin-bottom: 14px;
-    }
-    .lead-seccion { color: var(--gris-texto); max-width: 560px; font-size: 1.05rem; }
-    .centro { text-align: center; margin: 0 auto 56px; }
-    .centro .lead-seccion { margin: 0 auto; }
+    section{padding:96px 0}
+    .head-c{text-align:center;max-width:600px;margin:0 auto 56px}
+    .titulo{font-size:clamp(2rem,4.6vw,2.9rem);margin:14px 0 12px}
+    .sub{color:var(--ink-soft);font-size:1.06rem}
 
-    /* =========================================================
-       SERVICIOS — 4 cards con ícono SVG
-       ========================================================= */
-    .servicios { background: var(--gris-fondo); }
-    .grid-servicios {
-      display: grid; grid-template-columns: 1fr; gap: 22px;
-    }
-    .card-servicio {
-      background: #fff; border-radius: var(--radio); padding: 32px 26px;
-      box-shadow: var(--sombra-suave);
-      border: 1px solid rgba(26,35,126,.06);
-      transition: transform .3s ease, box-shadow .3s ease;
-      position: relative; overflow: hidden;
-    }
-    /* Detalle decorativo: círculo celeste tenue en esquina */
-    .card-servicio::after {
-      content: ""; position: absolute; top: -40px; right: -40px;
-      width: 120px; height: 120px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(66,165,245,.14), transparent 70%);
-      transition: transform .4s ease;
-    }
-    .card-servicio:hover { transform: translateY(-8px); box-shadow: var(--sombra-card); }
-    .card-servicio:hover::after { transform: scale(1.6); }
-    .icono {
-      width: 62px; height: 62px; border-radius: 16px;
-      background: linear-gradient(140deg, var(--azul), var(--celeste));
-      display: grid; place-items: center; margin-bottom: 20px;
-      box-shadow: 0 12px 22px -10px rgba(26,35,126,.5);
-    }
-    .icono svg { width: 30px; height: 30px; stroke: #fff; }
-    .card-servicio h3 { font-size: 1.22rem; font-weight: 800; color: var(--tinta); margin-bottom: 8px; }
-    .card-servicio p { color: var(--gris-texto); font-size: .95rem; margin-bottom: 16px; }
-    .precio {
-      display: inline-flex; align-items: baseline; gap: 4px;
-      color: var(--azul); font-weight: 800; font-size: 1.05rem;
-    }
-    .precio .desde { font-size: .72rem; color: var(--gris-texto); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    /* Tira de confianza */
+    .strip{background:var(--oscuro);color:var(--crema);padding:26px 0}
+    .strip-in{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 40px;align-items:center;text-align:center}
+    .strip b{font-family:'Sora',sans-serif;font-size:1.1rem;color:#fff} .strip span{opacity:.6;font-size:.86rem}
 
-    /* =========================================================
-       POR QUÉ ELEGIRNOS — 3 puntos
-       ========================================================= */
-    .grid-ventajas { display: grid; grid-template-columns: 1fr; gap: 28px; }
-    .ventaja { display: flex; gap: 18px; align-items: flex-start; }
-    .ventaja .num {
-      flex: 0 0 auto; width: 54px; height: 54px; border-radius: 16px;
-      display: grid; place-items: center; font-weight: 900; font-size: 1.3rem; color: #fff;
-      background: linear-gradient(140deg, var(--azul), var(--azul-900));
-      box-shadow: var(--sombra-suave);
-    }
-    .ventaja h4 { font-size: 1.18rem; font-weight: 800; color: var(--azul); margin-bottom: 6px; }
-    .ventaja p { color: var(--gris-texto); font-size: .96rem; }
+    /* Servicios */
+    .grid-3{display:grid;grid-template-columns:1fr;gap:22px}
+    .card{background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r);padding:30px;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+    .card:hover{transform:translateY(-8px);box-shadow:var(--sombra)}
+    .card .ic{width:58px;height:58px;border-radius:16px;background:linear-gradient(140deg,var(--acento),var(--acento-2));display:grid;place-items:center;margin-bottom:18px;box-shadow:0 12px 24px -10px var(--acento)}
+    .card .ic svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2}
+    .card h3{font-size:1.3rem;margin-bottom:8px}
+    .card p{color:var(--ink-soft);font-size:.96rem}
 
-    /* =========================================================
-       UBICACIÓN + MAPA
-       ========================================================= */
-    .ubicacion { background: var(--gris-fondo); }
-    .grid-ubicacion { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: stretch; }
-    .info-card {
-      background: #fff; border-radius: var(--radio); padding: 34px;
-      box-shadow: var(--sombra-suave); border: 1px solid rgba(26,35,126,.06);
-    }
-    .info-fila { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid #eef2f9; }
-    .info-fila:last-child { border-bottom: none; }
-    .info-fila .ic {
-      flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px;
-      background: rgba(66,165,245,.12); display: grid; place-items: center;
-    }
-    .info-fila .ic svg { width: 22px; height: 22px; stroke: var(--azul); }
-    .info-fila strong { display: block; color: var(--tinta); font-size: 1rem; }
-    .info-fila span { color: var(--gris-texto); font-size: .92rem; }
-    .mapa-wrap {
-      border-radius: var(--radio); overflow: hidden; min-height: 340px;
-      box-shadow: var(--sombra-card); border: 1px solid rgba(26,35,126,.06);
-    }
-    .mapa-wrap iframe { width: 100%; height: 100%; min-height: 340px; border: 0; display: block; }
+    /* Por qué / features split */
+    .why{background:var(--bg-2)}
+    .split{display:grid;grid-template-columns:1fr;gap:44px;align-items:center}
+    .feat{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--linea)}
+    .feat:last-child{border:none}
+    .feat .n{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:'Sora',sans-serif;font-weight:800}
+    .feat h4{font-size:1.12rem;margin-bottom:4px} .feat p{color:var(--ink-soft);font-size:.95rem}
+    .why-visual{background:linear-gradient(150deg,var(--acento),var(--acento-2));border-radius:24px;min-height:380px;position:relative;overflow:hidden;display:grid;place-items:center;color:#fff;box-shadow:var(--sombra)}
+    .why-visual::after{content:"";position:absolute;inset:16px;border:1.5px solid rgba(255,255,255,.4);border-radius:16px}
+    .why-visual .big{position:relative;text-align:center;padding:20px}
+    .why-visual .big b{font-family:'Sora',sans-serif;font-size:4.4rem;display:block;line-height:1}
+    .why-visual .big span{letter-spacing:2px;text-transform:uppercase;font-size:.8rem;opacity:.9}
 
-    /* =========================================================
-       FRANJA CTA antes del footer
-       ========================================================= */
-    .cta-franja {
-      background: radial-gradient(120% 140% at 20% 10%, var(--celeste) 0%, var(--azul) 50%, var(--azul-900) 100%);
-      color: #fff; text-align: center; border-radius: 28px;
-      padding: 60px 28px; margin: 0 auto; max-width: var(--max);
-      position: relative; overflow: hidden;
-    }
-    .cta-franja::before {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(circle at 80% 120%, rgba(126,197,255,.4), transparent 55%);
-    }
-    .cta-franja > * { position: relative; z-index: 2; }
-    .cta-franja h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 900; letter-spacing: -.8px; margin-bottom: 12px; }
-    .cta-franja p { opacity: .9; margin-bottom: 28px; max-width: 480px; margin-inline: auto; }
+    /* Galería */
+    .grid-gal{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .gal{aspect-ratio:1;border-radius:16px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;color:#fff;transition:transform .35s}
+    .gal:hover{transform:scale(1.03)}
+    .gal::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55))}
+    .gal span{position:relative;z-index:2;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+    .g1{background:linear-gradient(140deg,#6c4cff,#a78bfa)}.g2{background:linear-gradient(140deg,#0e0c16,#3a3550)}
+    .g3{background:linear-gradient(140deg,#ff6b6b,#ffa36b)}.g4{background:linear-gradient(140deg,#1fb6a6,#5ee0c0)}
 
-    /* =========================================================
-       FOOTER
-       ========================================================= */
-    footer { background: var(--tinta); color: rgba(255,255,255,.75); padding: 60px 0 30px; }
-    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 34px; margin-bottom: 40px; }
-    footer .marca { color: #fff; margin-bottom: 14px; }
-    footer p { font-size: .92rem; line-height: 1.7; }
-    footer h5 { color: #fff; font-size: .85rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
-    footer ul { list-style: none; }
-    footer ul li { padding: 5px 0; font-size: .92rem; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 24px; text-align: center; font-size: .82rem; opacity: .6; }
+    /* Testimonios */
+    .grid-test{display:grid;grid-template-columns:1fr;gap:22px}
+    .test{background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r);padding:28px}
+    .test .estrellas{margin-bottom:12px;display:block}
+    .test p{font-size:1.02rem;margin-bottom:18px}
+    .test .who{display:flex;align-items:center;gap:12px}
+    .test .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(140deg,var(--acento),var(--acento-2));color:#fff;display:grid;place-items:center;font-weight:800;font-family:'Sora',sans-serif}
+    .test .who b{display:block;font-family:'Sora',sans-serif} .test .who small{color:var(--ink-soft)}
 
-    /* =========================================================
-       BOTÓN WHATSAPP FLOTANTE (fijo, siempre visible)
-       ========================================================= */
-    .wsp-flotante {
-      position: fixed; bottom: 22px; right: 22px; z-index: 999;
-      width: 62px; height: 62px; border-radius: 50%;
-      background: var(--wsp); display: grid; place-items: center;
-      box-shadow: 0 12px 30px -6px rgba(37,211,102,.7);
-      animation: pulso 2.4s ease-in-out infinite;
-      transition: transform .25s ease;
-    }
-    .wsp-flotante:hover { transform: scale(1.08); }
-    .wsp-flotante svg { width: 34px; height: 34px; fill: #fff; }
-    /* Etiqueta que aparece junto al botón en pantallas grandes */
-    .wsp-flotante .etiqueta {
-      position: absolute; right: 74px; white-space: nowrap;
-      background: #fff; color: var(--tinta); font-weight: 700; font-size: .85rem;
-      padding: 9px 15px; border-radius: 10px; box-shadow: var(--sombra-card);
-      opacity: 0; transform: translateX(10px); transition: all .3s ease; pointer-events: none;
-    }
-    .wsp-flotante:hover .etiqueta { opacity: 1; transform: translateX(0); }
+    /* Stats */
+    .stats{background:var(--oscuro);color:#fff}
+    .grid-stat{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;text-align:center}
+    .stat b{font-family:'Sora',sans-serif;font-size:clamp(2.2rem,6vw,3.4rem);background:linear-gradient(120deg,#fff,var(--acento-2));-webkit-background-clip:text;background-clip:text;color:transparent;display:block}
+    .stat span{opacity:.7;letter-spacing:1px;text-transform:uppercase;font-size:.78rem}
 
-    @keyframes pulso {
-      0%   { box-shadow: 0 12px 30px -6px rgba(37,211,102,.7), 0 0 0 0 rgba(37,211,102,.5); }
-      70%  { box-shadow: 0 12px 30px -6px rgba(37,211,102,.7), 0 0 0 16px rgba(37,211,102,0); }
-      100% { box-shadow: 0 12px 30px -6px rgba(37,211,102,.7), 0 0 0 0 rgba(37,211,102,0); }
-    }
+    /* Ubicación */
+    .grid-loc{display:grid;grid-template-columns:1fr;gap:34px;align-items:stretch}
+    .loc-card{background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r);padding:32px}
+    .loc-row{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--linea)}
+    .loc-row:last-of-type{border:none}
+    .loc-row .ic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;background:var(--crema);display:grid;place-items:center;color:var(--acento)}
+    .loc-row .ic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+    .loc-row strong{display:block} .loc-row span{color:var(--ink-soft);font-size:.94rem}
+    .mapa{border-radius:var(--r);overflow:hidden;min-height:340px;box-shadow:var(--sombra);border:1px solid var(--linea)}
+    .mapa iframe{width:100%;height:100%;min-height:340px;border:0;display:block}
 
-    /* =========================================================
-       ANIMACIONES DE ENTRADA (IntersectionObserver)
-       ========================================================= */
-    .reveal { opacity: 0; transform: translateY(34px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    /* Retardos escalonados para hijos */
-    .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; }
-    .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
+    /* CTA final */
+    .cta-final{padding:90px 0}
+    .cta-box{background:linear-gradient(150deg,var(--acento),var(--acento-2));border-radius:30px;padding:64px 30px;text-align:center;color:#fff;position:relative;overflow:hidden;box-shadow:var(--sombra)}
+    .cta-box::before{content:"";position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.15);top:-180px;left:-100px}
+    .cta-box>*{position:relative;z-index:2}
+    .cta-box h2{font-size:clamp(1.9rem,4.5vw,2.8rem);margin-bottom:12px}
+    .cta-box p{opacity:.92;max-width:480px;margin:0 auto 26px}
+    .cta-box .btn-wsp{background:#fff;color:var(--ink)}
 
-    /* =========================================================
-       RESPONSIVE — tablet y desktop
-       ========================================================= */
-    @media (min-width: 720px) {
-      .grid-servicios { grid-template-columns: repeat(2, 1fr); }
-      .grid-ventajas { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (min-width: 960px) {
-      .hero-grid { grid-template-columns: 1.05fr .95fr; }
-      .grid-servicios { grid-template-columns: repeat(4, 1fr); }
-      .grid-ubicacion { grid-template-columns: 1fr 1.1fr; }
-    }
+    /* Footer */
+    footer{background:var(--oscuro);color:rgba(255,255,255,.7);padding:60px 0 28px}
+    .foot-grid{display:grid;grid-template-columns:1fr;gap:30px;margin-bottom:36px}
+    footer .brand{color:#fff;margin-bottom:12px}
+    footer h5{color:#fff;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+    footer ul{list-style:none} footer ul li{padding:5px 0;font-size:.92rem}
+    .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;text-align:center;font-size:.82rem;opacity:.6}
 
-    /* =========================================================
-       ACCESIBILIDAD: respetar prefers-reduced-motion
-       ========================================================= */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
-      .reveal { opacity: 1; transform: none; }
+    /* WhatsApp flotante */
+    .wsp-float{position:fixed;bottom:22px;right:22px;z-index:90;width:62px;height:62px;border-radius:50%;background:var(--wsp);
+      display:grid;place-items:center;box-shadow:0 12px 30px -6px rgba(37,211,102,.7);animation:pulso 2.4s infinite;transition:transform .25s}
+    .wsp-float:hover{transform:scale(1.08)}.wsp-float svg{width:34px;height:34px;fill:#fff}
+    @keyframes pulso{0%{box-shadow:0 12px 30px -6px rgba(37,211,102,.7),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 12px 30px -6px rgba(37,211,102,.7),0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 12px 30px -6px rgba(37,211,102,.7),0 0 0 0 rgba(37,211,102,0)}}
+
+    /* Reveal */
+    .rev{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+    .rev.vis{opacity:1;transform:none}
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+    /* Responsive */
+    @media(min-width:760px){
+      .grid-3{grid-template-columns:repeat(3,1fr)} .grid-gal{grid-template-columns:repeat(4,1fr)}
+      .grid-test{grid-template-columns:repeat(3,1fr)} .grid-stat{grid-template-columns:repeat(4,1fr)}
+      .hero-grid{grid-template-columns:1.05fr .95fr} .split{grid-template-columns:1fr 1fr}
+      .grid-loc{grid-template-columns:1fr 1.1fr} .foot-grid{grid-template-columns:2fr 1fr 1fr}
     }
+    @media(max-width:759px){ .nav-links{display:none} .hamb{display:block} section{padding:70px 0} }
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rev{opacity:1;transform:none}}
   </style>
 </head>
 <body>
 
+  <!-- ============================ NAV ============================ -->
+  <nav id="nav">
+    <div class="nav-in">
+      <a class="brand" href="#top"><span class="mk">N</span> Tu&nbsp;Negocio</a>
+      <div class="nav-links">
+        <a class="lk" href="#servicios">Servicios</a>
+        <a class="lk" href="#porque">Por qué nosotros</a>
+        <a class="lk" href="#testimonios">Opiniones</a>
+        <a class="lk" href="#ubicacion">Ubicación</a>
+        <a class="btn btn-dark" style="min-height:46px;padding:0 20px;font-size:.92rem" href="#contacto">Contáctanos</a>
+      </div>
+      <button class="hamb" id="hamb" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="overlay" id="ov"></div>
+  <aside class="drawer" id="drawer">
+    <a href="#servicios">Servicios</a><a href="#porque">Por qué nosotros</a>
+    <a href="#testimonios">Opiniones</a><a href="#ubicacion">Ubicación</a>
+    <a class="btn btn-wsp" style="margin-top:18px" href="#contacto">Contáctanos</a>
+  </aside>
+
   <!-- ============================ HERO ============================ -->
-  <header class="hero">
-    <div class="contenedor">
-      <!-- Barra de navegación -->
-      <nav class="nav">
-        <div class="marca">
-          <span class="logo-burbuja">
-            <!-- Ícono gota/lavado -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2.5C12 2.5 5 9.5 5 14a7 7 0 0 0 14 0c0-4.5-7-11.5-7-11.5z"/>
-            </svg>
-          </span>
-          Lavandería Express <span style="color:var(--celeste-claro)">Milagros</span>
-        </div>
-        <a href="tel:+51987654321" class="nav-tel">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          +51 987 654 321
-        </a>
-      </nav>
-
-      <!-- Contenido principal -->
+  <header class="hero" id="top">
+    <div class="wrap">
       <div class="hero-grid">
-        <div class="reveal">
-          <span class="hero-pill"><span class="punto"></span> Recojo y entrega a domicilio en Miraflores</span>
-          <h1>Tu ropa lista en <span class="resalta">24 horas</span></h1>
-          <p class="sub">Lavado al agua, lavado en seco y planchado profesional. Nosotros recogemos, lavamos y te lo devolvemos impecable. Tú solo disfruta tu tiempo.</p>
+        <div class="rev">
+          <span class="eyebrow">★ Negocio destacado en tu zona</span>
+          <h1>Más clientes para <span class="hl">tu negocio</span>, desde internet.</h1>
+          <p class="lead">Una página web profesional que trabaja por ti 24/7: te encuentran en Google, conocen tus servicios y te escriben directo por WhatsApp. Lista en 24–72 horas.</p>
           <div class="hero-cta">
-            <a class="btn btn-wsp" href="https://wa.me/51987654321?text=Hola%20Lavander%C3%ADa%20Milagros,%20quiero%20cotizar%20un%20servicio" target="_blank" rel="noopener">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.733-.979z"/></svg>
-              Cotizar por WhatsApp
-            </a>
-            <a class="btn btn-fantasma" href="#servicios">Ver servicios y precios</a>
+            <a class="btn btn-wsp" href="#contacto">
+              <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.733-.979z"/></svg>
+              Escríbenos por WhatsApp</a>
+            <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
           </div>
-
-          <!-- Prueba social -->
-          <div class="hero-prueba">
-            <div class="estrellas">★★★★★</div>
-            <div><strong>+1.200 prendas al mes</strong><small>Vecinos de Miraflores confían en nosotros</small></div>
+          <div class="hero-trust">
+            <span class="estrellas">★★★★★</span>
+            <small><strong>+500 clientes felices</strong> · 4.9 de 5 en reseñas</small>
           </div>
         </div>
 
-        <!-- Tarjeta visual decorativa (placeholder CSS, sin imágenes) -->
-        <div class="reveal d2" aria-hidden="true">
-          <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:24px;padding:28px;backdrop-filter:blur(8px);">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
-              <strong style="font-size:1.05rem;">Estado de tu pedido</strong>
-              <span style="background:var(--wsp);color:#fff;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:999px;">EN CAMINO</span>
-            </div>
-            <!-- Línea de tiempo simulada -->
-            <div style="display:grid;gap:18px;">
-              <div style="display:flex;gap:14px;align-items:center;">
-                <span style="width:34px;height:34px;border-radius:50%;background:var(--wsp);display:grid;place-items:center;flex:0 0 auto;">✓</span>
-                <div><strong style="display:block;">Recojo a domicilio</strong><small style="opacity:.75;">Hoy · 9:15 am</small></div>
-              </div>
-              <div style="display:flex;gap:14px;align-items:center;">
-                <span style="width:34px;height:34px;border-radius:50%;background:var(--wsp);display:grid;place-items:center;flex:0 0 auto;">✓</span>
-                <div><strong style="display:block;">Lavado y planchado</strong><small style="opacity:.75;">Hoy · 2:40 pm</small></div>
-              </div>
-              <div style="display:flex;gap:14px;align-items:center;opacity:.7;">
-                <span style="width:34px;height:34px;border-radius:50%;border:2px solid var(--celeste-claro);display:grid;place-items:center;flex:0 0 auto;">3</span>
-                <div><strong style="display:block;">Entrega en tu puerta</strong><small style="opacity:.75;">Mañana · 10:00 am</small></div>
-              </div>
-            </div>
+        <div class="mock rev d2" aria-hidden="true">
+          <div class="mock-card">
+            <div class="mock-top"><strong style="font-family:'Sora',sans-serif">Mensajes de hoy</strong><span class="mock-badge">EN LÍNEA</span></div>
+            <div class="mock-row"><span class="mock-ic">💬</span><div><b>Nueva consulta</b><small>"Hola, ¿tienen disponibilidad hoy?"</small></div></div>
+            <div class="mock-row"><span class="mock-ic">📅</span><div><b>Reserva confirmada</b><small>Cliente nuevo · 4:30 pm</small></div></div>
+            <div class="mock-row"><span class="mock-ic">⭐</span><div><b>Reseña 5 estrellas</b><small>"Excelente atención, vuelvo seguro"</small></div></div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Forma geométrica decorativa: ola inferior -->
-    <div class="hero-ola">
-      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,90 1440,45 L1440,90 L0,90 Z" fill="#ffffff"/>
-      </svg>
     </div>
   </header>
 
+  <!-- ============================ TIRA DE CONFIANZA ============================ -->
+  <div class="strip">
+    <div class="wrap strip-in">
+      <div><b>24–72h</b> <span>de entrega</span></div>
+      <div><b>WhatsApp</b> <span>integrado</span></div>
+      <div><b>Google</b> <span>te encuentran</span></div>
+      <div><b>100%</b> <span>responsive (móvil)</span></div>
+    </div>
+  </div>
+
   <!-- ============================ SERVICIOS ============================ -->
-  <section class="servicios" id="servicios">
-    <div class="contenedor">
-      <div class="centro reveal">
-        <span class="eyebrow">Nuestros servicios</span>
-        <h2 class="titulo-seccion">Todo lo que tu ropa necesita</h2>
-        <p class="lead-seccion">Precios claros, sin sorpresas. Atendemos prendas delicadas, edredones, ternos y uniformes.</p>
+  <section id="servicios">
+    <div class="wrap">
+      <div class="head-c rev">
+        <span class="eyebrow">Lo que ofrecemos</span>
+        <h2 class="titulo">Servicios pensados para vender más</h2>
+        <p class="sub">Personaliza estos bloques con lo que ofrece tu negocio.</p>
       </div>
-
-      <div class="grid-servicios">
-        <!-- Card 1: Lavado al agua -->
-        <article class="card-servicio reveal d1">
-          <div class="icono">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12a9 9 0 0 0 18 0"/><path d="M7 16c1.5 1 3 1 4.5 0s3-1 4.5 0"/></svg>
-          </div>
-          <h3>Lavado al agua</h3>
-          <p>Lavado completo con suavizante incluido. Ideal para tu ropa del día a día.</p>
-          <span class="precio"><span class="desde">desde</span> S/ 6.90 / kg</span>
+      <div class="grid-3">
+        <article class="card rev d1">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div>
+          <h3>Servicio principal</h3>
+          <p>Describe aquí tu servicio estrella y por qué tus clientes lo aman. Precio referencial desde S/ 00.</p>
         </article>
-
-        <!-- Card 2: Lavado en seco -->
-        <article class="card-servicio reveal d2">
-          <div class="icono">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l6 4 6-4"/><path d="M12 7v4"/><path d="M5 11h14l1.5 9a1 1 0 0 1-1 1.2H4.5a1 1 0 0 1-1-1.2L5 11z"/></svg>
-          </div>
-          <h3>Lavado en seco</h3>
-          <p>Para ternos, vestidos y prendas delicadas que no pueden mojarse.</p>
-          <span class="precio"><span class="desde">desde</span> S/ 18.00</span>
+        <article class="card rev d2">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Atención rápida</h3>
+          <p>Reservas y consultas directo por WhatsApp, sin esperas ni llamadas. Respondes cuando puedes.</p>
         </article>
-
-        <!-- Card 3: Planchado -->
-        <article class="card-servicio reveal d3">
-          <div class="icono">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-2a5 5 0 0 1 5-5h6l5 5v2"/><path d="M3 14h18v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 7V5a1 1 0 0 1 1-1h2"/></svg>
-          </div>
-          <h3>Planchado</h3>
-          <p>Acabado profesional con vapor. Tus camisas listas para impresionar.</p>
-          <span class="precio"><span class="desde">desde</span> S/ 3.50 / prenda</span>
-        </article>
-
-        <!-- Card 4: Entrega a domicilio -->
-        <article class="card-servicio reveal d4">
-          <div class="icono">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h12v11H1z"/><path d="M13 8h5l3 3v4h-8z"/><circle cx="5.5" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
-          </div>
-          <h3>Entrega a domicilio</h3>
-          <p>Recojo y entrega gratis en Miraflores desde S/ 40 de pedido.</p>
-          <span class="precio"><span class="desde">desde</span> Gratis</span>
+        <article class="card rev d3">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 12V8H4v4"/><path d="M4 12h16v8H4z"/><path d="M9 4h6v4H9z"/></svg></div>
+          <h3>Otro servicio</h3>
+          <p>Suma todos los servicios que quieras. Cada uno con su descripción y precio referencial.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============================ POR QUÉ ELEGIRNOS ============================ -->
+  <!-- ============================ POR QUÉ ============================ -->
+  <section class="why" id="porque">
+    <div class="wrap">
+      <div class="split">
+        <div class="rev">
+          <span class="eyebrow">Por qué elegirnos</span>
+          <h2 class="titulo" style="margin-bottom:24px">La diferencia se nota</h2>
+          <div class="feat"><span class="n">1</span><div><h4>Rapidez real</h4><p>Atención ágil y entrega cuando lo prometemos. Tu tiempo vale.</p></div></div>
+          <div class="feat"><span class="n">2</span><div><h4>Calidad garantizada</h4><p>Hacemos las cosas bien a la primera. Si no quedas conforme, lo resolvemos.</p></div></div>
+          <div class="feat"><span class="n">3</span><div><h4>Cercanía</h4><p>Trato directo y humano. Aquí no eres un número, eres parte de la familia.</p></div></div>
+        </div>
+        <div class="why-visual rev d2" aria-hidden="true">
+          <div class="big"><b>+500</b><span>clientes que confían</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ GALERÍA ============================ -->
   <section>
-    <div class="contenedor">
-      <div class="centro reveal">
-        <span class="eyebrow">Por qué elegirnos</span>
-        <h2 class="titulo-seccion">Más tiempo para ti</h2>
-        <p class="lead-seccion">Tres razones por las que tus vecinos de Miraflores nos prefieren.</p>
+    <div class="wrap">
+      <div class="head-c rev">
+        <span class="eyebrow">Galería</span>
+        <h2 class="titulo">Mira nuestro trabajo</h2>
+        <p class="sub">Reemplaza estos espacios por fotos reales de tu negocio.</p>
       </div>
-
-      <div class="grid-ventajas">
-        <div class="ventaja reveal d1">
-          <span class="num">1</span>
-          <div>
-            <h4>Rapidez de verdad</h4>
-            <p>Entrega en 24 horas para servicios estándar. ¿Urgente? Tenemos servicio express en 6 horas.</p>
-          </div>
-        </div>
-        <div class="ventaja reveal d2">
-          <span class="num">2</span>
-          <div>
-            <h4>Calidad garantizada</h4>
-            <p>Productos premium, control de cada prenda y trato especial para lo delicado. Si no quedas conforme, lo lavamos de nuevo gratis.</p>
-          </div>
-        </div>
-        <div class="ventaja reveal d3">
-          <span class="num">3</span>
-          <div>
-            <h4>Lo recogemos en tu puerta</h4>
-            <p>Coordinas por WhatsApp, pasamos por tu ropa y te la devolvemos doblada y lista. Cero filas, cero esperas.</p>
-          </div>
-        </div>
+      <div class="grid-gal">
+        <div class="gal g1 rev d1"><span>Foto 1</span></div>
+        <div class="gal g2 rev d2"><span>Foto 2</span></div>
+        <div class="gal g3 rev d3"><span>Foto 3</span></div>
+        <div class="gal g4 rev d4"><span>Foto 4</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ UBICACIÓN + MAPA ============================ -->
-  <section class="ubicacion">
-    <div class="contenedor">
-      <div class="centro reveal">
+  <!-- ============================ TESTIMONIOS ============================ -->
+  <section id="testimonios" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="head-c rev">
+        <span class="eyebrow">Opiniones</span>
+        <h2 class="titulo">Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="grid-test">
+        <div class="test rev d1"><span class="estrellas">★★★★★</span><p>"Súper recomendados. La atención fue rápida y el resultado superó lo que esperaba."</p><div class="who"><span class="av">M</span><div><b>María G.</b><small>Cliente frecuente</small></div></div></div>
+        <div class="test rev d2"><span class="estrellas">★★★★★</span><p>"Ahora escribo por WhatsApp y me responden al toque. Mucho más fácil que antes."</p><div class="who"><span class="av">J</span><div><b>Jorge P.</b><small>Cliente nuevo</small></div></div></div>
+        <div class="test rev d3"><span class="estrellas">★★★★★</span><p>"Profesionales y cumplidos. Volvería sin dudarlo y ya los recomendé a mi familia."</p><div class="who"><span class="av">L</span><div><b>Lucía R.</b><small>Cliente</small></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ STATS ============================ -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="grid-stat">
+        <div class="stat rev d1"><b data-n="500">0</b><span>Clientes atendidos</span></div>
+        <div class="stat rev d2"><b data-n="4.9" data-dec="1">0</b><span>Estrellas promedio</span></div>
+        <div class="stat rev d3"><b data-n="10">0</b><span>Años de experiencia</span></div>
+        <div class="stat rev d4"><b data-n="100" data-suf="%">0</b><span>Recomendados</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ UBICACIÓN / CONTACTO ============================ -->
+  <section id="ubicacion">
+    <div class="wrap">
+      <div class="head-c rev" id="contacto">
         <span class="eyebrow">Visítanos</span>
-        <h2 class="titulo-seccion">Horarios y ubicación</h2>
-        <p class="lead-seccion">Estamos en el corazón de Miraflores, listos para atenderte.</p>
+        <h2 class="titulo">Horarios y ubicación</h2>
       </div>
-
-      <div class="grid-ubicacion">
-        <!-- Datos -->
-        <div class="info-card reveal d1">
-          <div class="info-fila">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <div><strong>Dirección</strong><span>Av. Larco 345, Miraflores, Lima</span></div>
-          </div>
-          <div class="info-fila">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <div><strong>Horario de atención</strong><span>Lunes a Sábado · 8:00 am – 8:00 pm</span></div>
-          </div>
-          <div class="info-fila">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-            <div><strong>Teléfono / WhatsApp</strong><span>+51 987 654 321</span></div>
-          </div>
-          <div style="margin-top:24px;">
-            <a class="btn btn-wsp" style="width:100%;justify-content:center;" href="https://wa.me/51987654321?text=Hola,%20quiero%20coordinar%20un%20recojo%20a%20domicilio" target="_blank" rel="noopener">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.733-.979z"/></svg>
-              Coordinar recojo
-            </a>
-          </div>
+      <div class="grid-loc">
+        <div class="loc-card rev d1">
+          <div class="loc-row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><strong>Dirección</strong><span>Av. Ejemplo 123, tu ciudad</span></div></div>
+          <div class="loc-row"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><strong>Horario</strong><span>Lunes a Sábado · 9:00 am – 8:00 pm</span></div></div>
+          <div class="loc-row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><strong>WhatsApp</strong><span id="telTxt">+51 987 654 321</span></div></div>
+          <a class="btn btn-wsp" id="wspBtn2" style="width:100%;margin-top:22px" href="#">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.733-.979z"/></svg>
+            Escríbenos ahora</a>
         </div>
-
-        <!-- Mapa de Miraflores -->
-        <div class="mapa-wrap reveal d2">
-          <iframe
-            title="Ubicación Lavandería Express Milagros en Miraflores"
-            src="https://www.google.com/maps?q=Av.+Larco,+Miraflores,+Lima,+Per%C3%BA&z=15&output=embed"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="mapa rev d2">
+          <iframe title="Ubicación" src="https://www.google.com/maps?q=Lima,+Per%C3%BA&z=13&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ FRANJA CTA ============================ -->
-  <section style="padding:0 0 90px;">
-    <div class="contenedor">
-      <div class="cta-franja reveal">
-        <h2>¿Listo para dejar de lavar?</h2>
-        <p>Escríbenos ahora por WhatsApp y coordina tu primer recojo. Te respondemos en minutos.</p>
-        <a class="btn btn-wsp" href="https://wa.me/51987654321?text=Hola%20Lavander%C3%ADa%20Milagros,%20quiero%20mi%20primer%20recojo" target="_blank" rel="noopener" style="font-size:1.05rem;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.733-.979z"/></svg>
-          Escribir por WhatsApp
-        </a>
-      </div>
+  <!-- ============================ CTA FINAL ============================ -->
+  <div class="cta-final"><div class="wrap">
+    <div class="cta-box rev">
+      <h2>¿Listo para tener más clientes?</h2>
+      <p>Escríbenos por WhatsApp y empecemos hoy. Te respondemos en minutos.</p>
+      <a class="btn btn-wsp" id="wspBtn3" href="#">Hablar por WhatsApp →</a>
     </div>
-  </section>
+  </div></div>
 
   <!-- ============================ FOOTER ============================ -->
   <footer>
-    <div class="contenedor">
-      <div class="footer-grid">
+    <div class="wrap">
+      <div class="foot-grid">
         <div>
-          <div class="marca">
-            <span class="logo-burbuja">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5C12 2.5 5 9.5 5 14a7 7 0 0 0 14 0c0-4.5-7-11.5-7-11.5z"/></svg>
-            </span>
-            Lavandería Express Milagros
-          </div>
-          <p>Tu ropa impecable, sin moverte de casa. Servicio de lavandería con recojo y entrega a domicilio en Miraflores, Lima.</p>
+          <div class="brand"><span class="mk">N</span> Tu Negocio</div>
+          <p style="font-size:.92rem">Tu eslogan va aquí. Cuéntale al mundo en una frase qué hace especial a tu negocio.</p>
         </div>
-        <div>
-          <h5>Servicios</h5>
-          <ul>
-            <li>Lavado al agua</li>
-            <li>Lavado en seco</li>
-            <li>Planchado profesional</li>
-            <li>Entrega a domicilio</li>
-          </ul>
-        </div>
-        <div>
-          <h5>Contacto</h5>
-          <ul>
-            <li>Av. Larco 345, Miraflores</li>
-            <li>Lun – Sáb · 8am – 8pm</li>
-            <li>+51 987 654 321</li>
-          </ul>
-        </div>
+        <div><h5>Enlaces</h5><ul><li><a href="#servicios">Servicios</a></li><li><a href="#porque">Por qué nosotros</a></li><li><a href="#testimonios">Opiniones</a></li><li><a href="#ubicacion">Ubicación</a></li></ul></div>
+        <div><h5>Contacto</h5><ul><li>Av. Ejemplo 123</li><li>Lun–Sáb · 9am–8pm</li><li id="telFoot">+51 987 654 321</li></ul></div>
       </div>
-
-      <!-- Botón WhatsApp secundario en el footer -->
-      <div style="text-align:center;margin-bottom:36px;">
-        <a class="btn btn-wsp" href="https://wa.me/51987654321" target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.733-.979z"/></svg>
-          Escríbenos por WhatsApp
-        </a>
-      </div>
-
-      <div class="footer-bottom">
-        © 2026 Lavandería Express Milagros · Miraflores, Lima · Hecho con cariño
-      </div>
+      <div class="foot-bottom">© <span id="anio"></span> Tu Negocio · Sitio creado por condor.ai</div>
     </div>
   </footer>
 
-  <!-- ============================ BOTÓN WHATSAPP FLOTANTE ============================ -->
-  <a class="wsp-flotante" href="https://wa.me/51987654321?text=Hola%20Lavander%C3%ADa%20Milagros,%20quiero%20cotizar" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
-    <span class="etiqueta">¡Escríbenos! 👋</span>
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.733-.979zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+  <!-- WhatsApp flotante -->
+  <a class="wsp-float" id="wspFloat" href="#" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.733-.979zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
   </a>
 
   <script>
     /* =========================================================
-       ANIMACIONES DE ENTRADA AL HACER SCROLL
-       Usa IntersectionObserver: añade la clase .visible cuando
-       el elemento entra en pantalla, disparando el fade-in.
+       CONFIG — EDITA ESTO PARA CADA NEGOCIO
        ========================================================= */
-    (function () {
-      // Si el usuario prefiere menos movimiento, mostramos todo de una vez.
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var elementos = document.querySelectorAll('.reveal');
+    const NEGOCIO  = "Tu Negocio";
+    const WHATSAPP = "51987654321";       // número sin + ni espacios
+    const MENSAJE  = "Hola, vi su página web y quiero más información 😊";
 
-      if (reduce || !('IntersectionObserver' in window)) {
-        elementos.forEach(function (el) { el.classList.add('visible'); });
-        return;
-      }
+    /* ===== Aplicar config ===== */
+    const wlink = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(MENSAJE)}`;
+    ["wspBtn2","wspBtn3","wspFloat"].forEach(id=>{const e=document.getElementById(id);if(e)e.href=wlink;});
+    document.getElementById("anio").textContent = new Date().getFullYear();
 
-      var observador = new IntersectionObserver(function (entradas) {
-        entradas.forEach(function (entrada) {
-          if (entrada.isIntersecting) {
-            entrada.target.classList.add('visible');
-            observador.unobserve(entrada.target); // animamos solo una vez
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    /* ===== Nav sólida al hacer scroll ===== */
+    const nav=document.getElementById("nav");
+    addEventListener("scroll",()=>nav.classList.toggle("solid",scrollY>30),{passive:true});
 
-      elementos.forEach(function (el) { observador.observe(el); });
+    /* ===== Menú móvil ===== */
+    const hamb=document.getElementById("hamb"),drawer=document.getElementById("drawer"),ov=document.getElementById("ov");
+    const toggle=v=>{drawer.classList.toggle("open",v);ov.classList.toggle("on",v);hamb.classList.toggle("x",v);document.body.style.overflow=v?"hidden":"";};
+    hamb.onclick=()=>toggle(!drawer.classList.contains("open"));
+    ov.onclick=()=>toggle(false);
+    drawer.querySelectorAll("a").forEach(a=>a.onclick=()=>toggle(false));
+
+    /* ===== Reveal al hacer scroll ===== */
+    (function(){
+      const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const els=document.querySelectorAll(".rev");
+      if(reduce||!("IntersectionObserver"in window)){els.forEach(e=>e.classList.add("vis"));return;}
+      const obs=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");obs.unobserve(e.target);}});},{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+      els.forEach(e=>obs.observe(e));
+    })();
+
+    /* ===== Contadores animados ===== */
+    (function(){
+      const nums=document.querySelectorAll(".stat b[data-n]");
+      const anim=el=>{const fin=parseFloat(el.dataset.n),dec=+(el.dataset.dec||0),suf=el.dataset.suf||"";let t0=null;
+        const step=t=>{t0=t0||t;const p=Math.min((t-t0)/1300,1);el.textContent=(fin*p).toFixed(dec)+suf;if(p<1)requestAnimationFrame(step);};requestAnimationFrame(step);};
+      if(!("IntersectionObserver"in window)){nums.forEach(anim);return;}
+      const obs=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){anim(e.target);obs.unobserve(e.target);}});},{threshold:.5});
+      nums.forEach(n=>obs.observe(n));
     })();
   </script>
 </body>
